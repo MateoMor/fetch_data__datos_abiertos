@@ -1,14 +1,14 @@
 from tabulate import tabulate
 
-def ask_for_department(departamentos, elementos_por_linea=3, longitud_elemento=22):
-    # Función para imprimi los departamentos disponibles para consultar
+def print_list_with_index(lista, elementos_por_linea=3, longitud_elemento=22):
+    # Función para imprimir los elementos de un arreglo numerados por su indice y con formato de bloque
 
     contador = 0 
     cadena_a_imprimir = "" 
 
-    for i, departamento in enumerate(departamentos):
+    for i, elementeo in enumerate(lista):
         # Se crea la cadena a mostrar y se guarda su longitud
-        cadena = f"{i}. {departamento}"
+        cadena = f"{i}. {elementeo}"
         longitud_cadena = len(cadena)
 
         # diferencia_longitud es lo que le falta a cadena para tener longitud_elemento caracteres

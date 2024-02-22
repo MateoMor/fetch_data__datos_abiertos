@@ -1,5 +1,5 @@
 from src.api import api_request
-from src.ui import ask_for_department, print_data
+from src.ui import print_list_with_index, print_data
 from src.utils import pedir_numero
 
 
@@ -13,7 +13,7 @@ def main():
         "TOLIMA", "VALLE", "VAUPES", "VICHADA"
     ]
 
-    ask_for_department(departamentos)
+    print_list_with_index(departamentos)
 
     print("\nIngrese el numero del departamento: ", end="")
     numero_departamento = pedir_numero(maximo=(len(departamentos) - 1))
