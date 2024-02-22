@@ -1,4 +1,5 @@
 from api import api_request
+from ui import ask_for_department
 
 def main():
     
@@ -9,15 +10,17 @@ def main():
         "NORTE SANTANDER", "PUTUMAYO", "QUINDIO", "RISARALDA", "SAN ANDRES", "SANTANDER", "SUCRE", "TOLIMA", "VALLE", "VAUPES", "VICHADA"
     ]
     
-    for departamento in departamentos:
+    ask_for_department(departamentos)
+    
+    # Para saber los elementos de un diccionario se usa el método keys() al final de este    
+
+    """ for departamento in departamentos:
         try:
-            print(i)
-            i = i + 1
             # Ejecutar la función api_request para cada departamento solicitando 2 datos
-            api_request(limite=2, departamento_nom=departamento)["id_de_caso"]
+            print(api_request(limite=2, departamento_nom=departamento).keys())
             # print(f"El departamento {departamento} ha sido procesado con exito")
         except Exception as e:
-            print(f"Error al procesar el departamento {departamento}: {e}")
+            print(f"Error al procesar el departamento {departamento}: {e}") """
         
     """  nombre_departamento = input("Ingrse el departamento que desa consultar: ")
     cantidad_registros = input ("Ingrese la cantidad de registros que desea consultar: ")
