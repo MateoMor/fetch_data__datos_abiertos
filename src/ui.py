@@ -1,13 +1,13 @@
+from tabulate import tabulate
+
 def ask_for_department(departamentos, elementos_por_linea=3, longitud_elemento=22):
     # Función para imprimi los departamentos disponibles para consultar
 
-    contador = 0  # Cuenta la cantidad de elementos que se han impreso en una linea
-    cadena_a_imprimir = ""  # En esta cadena se irá guardando el string final que se imprimirá
-
-    print("\nINGRESE EL NUMERO DE DEPARTAMENTO A CONSULTAR\n")
+    contador = 0 
+    cadena_a_imprimir = "" 
 
     for i, departamento in enumerate(departamentos):
-        # Se crea la cadena con su indice y se guarda su longitud
+        # Se crea la cadena a mostrar y se guarda su longitud
         cadena = f"{i}. {departamento}"
         longitud_cadena = len(cadena)
 
@@ -26,19 +26,17 @@ def ask_for_department(departamentos, elementos_por_linea=3, longitud_elemento=2
     print(cadena_a_imprimir)  # Se imprime la cadena
 
 
-def print_data(datos_obtenidos):
-    # print("datos obtenidos: ", datos_obtenidos.keys())
-
-    espaciado = " " * 5
-    # print(datos_obtenidos["ciudad_municipio_nom"] + espaciado + datos_obtenidos["departamento_nom"]
-    #      + espaciado + datos_obtenidos["departamento_nom"]
-    #      + espaciado + datos_obtenidos["edad"]
-    #      + datos_obtenidos["fuente_tipo_contagio"])
-
-    # for dato in datos_obtenidos:
-
-    # print(dato["ciudad_municipio_nom"])
-    # print(dato["departamento_nom"])
-    # print(dato["departamento_nom"])
-
-  ##########################################################################
+def print_data(datos_obtenidos_pandas):
+    print()
+    
+    # Añade pais_viajo_1_nom a las columnas si no se encuentra
+    if "pais_viajo_1_nom" not in datos_obtenidos_pandas.columns:
+        datos_obtenidos_pandas.loc[:, "pais_viajo_1_nom"] = ""
+    
+    # Se copian los elementos a imprimir
+    elementos_a_imprimir = datos_obtenidos_pandas[["ciudad_municipio_nom", "departamento_nom", "edad", "fuente_tipo_contagio", "estado", "pais_viajo_1_nom"]].copy()
+    
+    # Encabezados de las columnas
+    headers = ["Municipio", "departamento", "edad", "Tipo de contagio", "Estado", "País de Procedencia"]
+    
+    print(tabulate(elementos_a_imprimir, headers=headers))
