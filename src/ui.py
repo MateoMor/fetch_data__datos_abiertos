@@ -1,4 +1,3 @@
-
 def ask_for_department(departamentos, elementos_por_linea=3, longitud_elemento=22):
     # Función para imprimi los departamentos disponibles para consultar
 
@@ -25,3 +24,21 @@ def ask_for_department(departamentos, elementos_por_linea=3, longitud_elemento=2
             contador = 0
 
     print(cadena_a_imprimir)  # Se imprime la cadena
+
+
+def print_data(datos_obtenidos):
+    # print("datos obtenidos: ", datos_obtenidos.keys())
+
+    espaciado = " " * 5
+    # print(datos_obtenidos["ciudad_municipio_nom"] + espaciado + datos_obtenidos["departamento_nom"]
+    #      + espaciado + datos_obtenidos["departamento_nom"]
+    #      + espaciado + datos_obtenidos["edad"]
+    #      + datos_obtenidos["fuente_tipo_contagio"])
+
+    # for dato in datos_obtenidos:
+
+    # print(dato["ciudad_municipio_nom"])
+    # print(dato["departamento_nom"])
+    # print(dato["departamento_nom"])
+
+  ##########################################################################
