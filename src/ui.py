@@ -39,4 +39,4 @@ def print_data(datos_obtenidos_pandas):
     # Encabezados de las columnas
     headers = ["Municipio", "departamento", "edad", "Tipo de contagio", "Estado", "País de Procedencia"]
     
-    print(tabulate(elementos_a_imprimir, headers=headers))
+    print(tabulate(elementos_a_imprimir, headers=headers, tablefmt = "double_grid"))
