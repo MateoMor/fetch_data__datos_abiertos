@@ -1,13 +1,9 @@
-def pedir_numero(maximo, minimo=0):
+def validate_number():
     numero = input()
 
     try:
         numero = int(numero)
-        if (numero > maximo or numero < minimo):
-            print("Ingrese un valor valido: ", end="")
-            return pedir_numero(maximo, minimo)
         return numero
-    
     except ValueError:
-        print("Tipo de dato invalido, por favor ingrese un número entero: ", end="")
-        return pedir_numero(maximo, minimo)
+        print("Ingrese un número valido: ", end="")
+        return validate_number()

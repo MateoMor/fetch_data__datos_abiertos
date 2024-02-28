@@ -1,42 +1,33 @@
 from tabulate import tabulate
+from src.utils import validate_number
 
-def print_list_with_index(lista, elementos_por_linea=3, longitud_elemento=22):
-    # Función para imprimir los elementos de un arreglo numerados por su indice y con formato de bloque
+def print_list(lista):
+    for i, elemento in enumerate(lista):
+        print(f"{i}: {elemento}")
 
-    contador = 0 
-    cadena_a_imprimir = "" 
+def ask_for_options(departments):
+    selected_options = {"departament": "", "number_of_elements": 0}
+    
+    while True:
+        selected_options["departament"] = input("\nIngrese el nombre del departamento: ").upper()
+        if selected_options["departament"] in departments:
+            break
+        else:
+            print("El departamento ingresado no se encuentra en la lista.")
 
-    for i, elementeo in enumerate(lista):
-        # Se crea la cadena a mostrar y se guarda su longitud
-        cadena = f"{i}. {elementeo}"
-        longitud_cadena = len(cadena)
-
-        # diferencia_longitud es lo que le falta a cadena para tener longitud_elemento caracteres
-        diferencia_longitud = longitud_elemento - longitud_cadena
-
-        # Se añade la cadena a cadena a imprimir con algunos ajustes de formato
-        cadena_a_imprimir = cadena_a_imprimir + cadena + " " * diferencia_longitud
-
-        # Se suma 1 al contador y se verifica si el numero de elementos en linea a sido alcanzado, si es asi se hace un salto de linea
-        contador += 1
-        if (contador == elementos_por_linea):
-            cadena_a_imprimir = cadena_a_imprimir + "\n"
-            contador = 0
-
-    print(cadena_a_imprimir)  # Se imprime la cadena
-
-
-def print_data(datos_obtenidos_pandas):
+    user_answer = "n" 
+    while(user_answer.lower() == "n"):
+        print("Ingrese la cantidad de elementos a consultar: ", end="")
+        selected_options["number_of_elements"] = validate_number()
+        if(selected_options["number_of_elements"] > 1000):
+            user_answer = input("La cantidad de elementos es superior a 1000. ¿Continuar?: [S/n]: ")
+        else:
+            break
+        
+    return selected_options
+    
+def print_data(data):
+    headers = ["Municipio", "Departamento", "Edad", "Tipo de contagio", "Estado", "País de Procedencia"]
+    
     print()
-    
-    # Añade pais_viajo_1_nom a las columnas si no se encuentra
-    if "pais_viajo_1_nom" not in datos_obtenidos_pandas.columns:
-        datos_obtenidos_pandas.loc[:, "pais_viajo_1_nom"] = ""
-    
-    # Se copian los elementos a imprimir
-    elementos_a_imprimir = datos_obtenidos_pandas[["ciudad_municipio_nom", "departamento_nom", "edad", "fuente_tipo_contagio", "estado", "pais_viajo_1_nom"]].copy()
-    
-    # Encabezados de las columnas
-    headers = ["Municipio", "departamento", "edad", "Tipo de contagio", "Estado", "País de Procedencia"]
-    
-    print(tabulate(elementos_a_imprimir, headers=headers, tablefmt = "double_grid"))
+    print(tabulate(data, headers=headers, tablefmt = "double_grid"))

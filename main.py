@@ -1,6 +1,5 @@
 from src.api import api_request
-from src.ui import print_list_with_index, print_data
-from src.utils import pedir_numero
+from src.ui import print_list, ask_for_options, print_data
 
 
 def main():
@@ -13,18 +12,12 @@ def main():
         "TOLIMA", "VALLE", "VAUPES", "VICHADA"
     ]
 
-    print_list_with_index(departamentos)
+    print_list(departamentos)
 
-    print("\nIngrese el numero del departamento: ", end="")
-    numero_departamento = pedir_numero(maximo=(len(departamentos) - 1))
+    selected_options = ask_for_options(departamentos)
+    
+    data_to_print = api_request( departamento_nom=selected_options["departament"], limite=selected_options["number_of_elements"])
 
-    print("Ingrese la cantidad de registros a obtener (maximo 500): ", end="")
-    cantidad_registros = pedir_numero(maximo=500)
-
-    datos_departamento = api_request(
-        limite=cantidad_registros, departamento_nom=departamentos[numero_departamento])
-
-    print_data(datos_obtenidos_pandas=datos_departamento)
-
+    print_data(data=data_to_print)
 
 main()
